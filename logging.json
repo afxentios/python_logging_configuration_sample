@@ -6,6 +6,12 @@
       "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     }
   },
+  "filters": {
+    "info_special": {
+      "()": "config_logger.filters.SameLevelFilter",
+      "level": "logging.INFO",
+    }
+  },
   "handlers": {
     "console": {
       "class": "logging.StreamHandler",
@@ -16,6 +22,7 @@
     "info_file_handler": {
       "class": "logging.handlers.RotatingFileHandler",
       "level": "INFO",
+      "filters": ["info_special"],
       "formatter": "basic",
       "filename": "info.log",
       "maxBytes": 10485760,

@@ -7,6 +7,12 @@ config = {
             'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
         }
     },
+    'filters': {
+        'info_special': {
+            '()': 'config_logger.filters.SameLevelFilter',
+            'level': 'logging.INFO',
+        }
+    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
@@ -18,6 +24,7 @@ config = {
             'class': 'logging.RotatingFileHandler',
             'formatter': 'basic',
             'level': 'INFO',
+            'filters': ['info_special'],
             'filename': 'info.log',
             'maxBytes': '10485760',
             'backupCount': '20',
